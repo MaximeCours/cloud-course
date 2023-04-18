@@ -1,5 +1,5 @@
 resource aws_vpc "default" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block = var.VPC_CIDR
   tags = {
     Name = "2im-Demo"
   }
@@ -7,16 +7,16 @@ resource aws_vpc "default" {
 
 resource aws_subnet "public" {
   vpc_id = aws_vpc.default.id
-  cidr_block = "10.0.10.0/24"
+  cidr_block = var.PUBLIC_SUBNET_CIDR
   tags = {
-    Name = "2im-Demo-Public"
+    Name = "${var.BASE_NAME}-Public"
   }
 }
 
 resource aws_internet_gateway "default" {
   vpc_id = aws_vpc.default.id
   tags = {
-    Name = "2im-Demo"
+    Name = var.BASE_NAME
   }
 }
 
@@ -27,7 +27,7 @@ resource aws_route_table "public" {
     gateway_id = aws_internet_gateway.default.id
   }
   tags = {
-    Name = "2im-Demo-Public"
+    Name = "${var.BASE_NAME}-Public"
   }
 }
 
