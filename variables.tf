@@ -20,8 +20,3 @@ variable VPC_CIDR {
   type = string
   default = "10.0.0.0/16"
 }
-
-variable PUBLIC_SUBNET_CIDR {
-  type = string
-  default = "10.0.10.0/24"
-}
