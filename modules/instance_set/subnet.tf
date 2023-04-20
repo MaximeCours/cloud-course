@@ -7,7 +7,7 @@ locals {
 resource aws_subnet "default" {
   vpc_id = local.vpc_id
   cidr_block = local.cidr_block
-  availability_zone = ""
+  availability_zone = var.availability_zone
   tags = {
     Name = "${var.base_name}-Public"
   }
